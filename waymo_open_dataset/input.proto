@@ -1,0 +1,30 @@
+syntax = "proto2";
+
+package waymo.open_dataset;
+
+import "waymo_open_dataset/label.proto";
+import "waymo_open_dataset/dataset.proto";
+
+
+message LaserPoints {
+  optional LaserName.Name name = 1;
+  optional bytes points = 2;
+  optional bytes intensities = 3;
+}
+
+
+message Entry {
+    optional Context context = 1;
+    optional int64 timestamp_micros = 2;
+    optional Transform pose = 3;
+    repeated CameraImage images = 4;
+    repeated LaserPoints lasers = 5;
+    repeated Label laser_labels = 6;
+    repeated CameraLabels projected_lidar_labels = 9;
+    repeated CameraLabels camera_labels = 8;
+    repeated Polygon2dProto no_label_zones = 7;
+}
+
+message Sequence {
+    repeated Entry entry = 2;
+}

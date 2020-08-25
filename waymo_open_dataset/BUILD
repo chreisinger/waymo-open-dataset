@@ -12,6 +12,13 @@ load("//tf:build_config.bzl", "all_proto_library")
 
 
 all_proto_library(
+    src = "input.proto",
+    deps = [":label_proto",
+            ":dataset_proto"],
+)
+
+
+all_proto_library(
     src = "dataset.proto",
     deps = [":label_proto"],
 )
